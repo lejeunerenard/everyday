@@ -6,7 +6,7 @@ function formatDate (date) {
     return ''
   }
 
-  return date.getYear() + '.' + date.getMonth() + date.getDate()
+  return date.getYear() + '.' + date.getMonth() + '.' + date.getDate()
 }
 
 function isToday (date) {
@@ -18,9 +18,9 @@ export default class App {
     let checkbox = defined(opt.checkbox, document.getElementById('done'))
 
     let dones = JSON.parse(storage.getItem('dones')) || []
-    let latest = dones.length ? dones[dones.length - 1] : {}
-
-    let today = isToday(new Date(latest.date))
+    let today = dones.reduce((prev, next) => {
+      return prev || isToday(new Date(next.date))
+    }, false)
 
     assign(this, {
       checkbox,
