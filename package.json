@@ -6,6 +6,7 @@
   "scripts": {
     "start": "budo index:bundle.js",
     "dev": "budo index:bundle.js --live --open",
+    "build:prod": "browserify index.js | uglifyjs -cm > bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -23,7 +24,8 @@
     "babelify": "^7.3.0",
     "budo": "^8.3.0",
     "snazzy": "^4.0.0",
-    "standard": "^7.1.2"
+    "standard": "^7.1.2",
+    "uglify-js": "^2.6.4"
   },
   "browserify": {
     "transform": [
